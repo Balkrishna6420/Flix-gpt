@@ -38,11 +38,10 @@ const Login = () => {
         .then((userCredential) => {
           const user = userCredential.user;
           updateProfile(user, {
-            displayName: "name.current.value",
+            displayName: name.current.value,
             photoURL: "https://avatars.githubusercontent.com/u/111333330?v=4",
           })
             .then(() => {
-              navigate("/browse");
               const { uid, email, displayName, photoURL } = auth.currentUser;
               dispatch(
                 addUser({
@@ -52,6 +51,7 @@ const Login = () => {
                   photoURL: photoURL,
                 }),
               );
+              navigate("/browse");
             })
             .catch((error) => {
               setErrorMessage(error.message);
@@ -68,17 +68,24 @@ const Login = () => {
         auth,
         email.current.value,
         password.current.value,
-      )
-        .then((userCredential) => {
-          const user = userCredential.user;
-          console.log(user);
-          navigate("/browse");
-        })
-        .catch((error) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
-          setErrorMessage(errorCode + "-" + errorMessage);
-        });
+      ).then((userCredential) => {
+        const user = userCredential.user;
+
+        console.log(user);
+
+        const { uid, email, displayName, photoURL } = user;
+
+        dispatch(
+          addUser({
+            uid,
+            email,
+            displayName,
+            photoURL,
+          }),
+        );
+
+        navigate("/browse");
+      });
     }
   };
   const toggleSignInForm = () => {
