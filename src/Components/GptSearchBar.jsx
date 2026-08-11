@@ -33,12 +33,12 @@ const GptSearchBar = () => {
     if (!gptResults.choices) {
       //todo : write error handling
     }
-    console.log(gptResults.choices[0].message.content);
+    //console.log(gptResults.choices[0].message.content);
     const gptMovies = gptResults.choices?.[0]?.message?.content.split(",");
     //for each movie search tmdb api
     const promiseArray = gptMovies.map((movie) => searchMovieTMDB(movie));
     const tmdbResults = await Promise.all(promiseArray);
-    console.log(tmdbResults);
+    //console.log(tmdbResults);
     dispatch(
       addGptMovieResult({ movieNames: gptMovies, movieResults: tmdbResults }),
     );
