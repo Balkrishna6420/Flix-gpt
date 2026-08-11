@@ -6,8 +6,7 @@ export const API_OPTIONS = {
   method: "GET",
   headers: {
     accept: "application/json",
-    Authorization:
-      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4NjRkNGZiMDZhODJhOGU4MGY3Y2I2ZGRmNGE1YWZjNSIsIm5iZiI6MTc4NjM1MDc4Ny43NTEwMDAyLCJzdWIiOiI2YTc5OGNjM2FiNGY0MDJkNmU5NDg0ZTMiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.sp6SigfEAEKOGGem2JRIHXpHYPy50sFb4MsK5JWuf88",
+    Authorization: "Bearer " + import.meta.env.VITE_TMDB_KEY,
   },
 };
 export const IMG_CDN_URL = "https://image.tmdb.org/t/p/w500";
@@ -18,3 +17,4 @@ export const SUPPORTED_LANGUAGES = [
   { identifier: "hindi", name: "Hindi" },
   { identifier: "spanish", name: "Spanish" },
 ];
+export const OPENAI_KEY = import.meta.env.VITE_OPENAI_KEY;
